@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -80,13 +81,48 @@ export default {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-16px)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(210 100% 55% / 0.3)" },
+          "50%": { boxShadow: "0 0 50px hsl(210 100% 55% / 0.7), 0 0 80px hsl(200 100% 70% / 0.4)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+        "spin-slow": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "scale-in": {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
+        "fade-in": "fade-in 0.8s ease-out forwards",
+        float: "float 5s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
+        shimmer: "shimmer 3s linear infinite",
+        "spin-slow": "spin-slow 20s linear infinite",
+        "slide-in-right": "slide-in-right 0.6s ease-out forwards",
+        "scale-in": "scale-in 0.5s ease-out forwards",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animate],
 } satisfies Config;

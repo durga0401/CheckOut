@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,61 +6,63 @@
 
 @layer base {
   :root {
-    --background: 220 20% 7%;
-    --foreground: 210 20% 92%;
+    /* Wozart-inspired: pure black + light lavender-grey sections */
+    --background: 0 0% 3%;           /* Pure near-black */
+    --foreground: 240 10% 95%;       /* Off-white */
 
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 92%;
+    --card: 0 0% 100%;               /* White cards on light sections */
+    --card-foreground: 0 0% 5%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 92%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 240 10% 95%;
 
-    --primary: 210 100% 55%;
+    --primary: 210 76% 50%;          /* Wozart blue: #2096D9 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 16% 16%;
-    --secondary-foreground: 210 20% 92%;
+    --secondary: 230 20% 93%;        /* Light lavender-grey for alternating sections */
+    --secondary-foreground: 0 0% 8%;
 
-    --muted: 220 14% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 230 15% 88%;
+    --muted-foreground: 220 10% 46%;
 
-    --accent: 210 100% 55%;
+    --accent: 210 76% 50%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 220 14% 18%;
-    --input: 220 14% 18%;
-    --ring: 210 100% 55%;
+    --border: 230 15% 85%;
+    --input: 230 15% 85%;
+    --ring: 210 76% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    --sidebar-background: 220 18% 10%;
-    --sidebar-foreground: 210 20% 92%;
-    --sidebar-primary: 210 100% 55%;
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 240 10% 95%;
+    --sidebar-primary: 210 76% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 16% 16%;
-    --sidebar-accent-foreground: 210 20% 92%;
-    --sidebar-border: 220 14% 18%;
-    --sidebar-ring: 210 100% 55%;
+    --sidebar-accent: 0 0% 8%;
+    --sidebar-accent-foreground: 240 10% 95%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 210 76% 50%;
 
-    --font-display: 'Space Grotesk', sans-serif;
+    --font-display: 'Montserrat', sans-serif;
     --font-body: 'Inter', sans-serif;
-
-    --glow-primary: 0 0 40px hsl(210 100% 55% / 0.3);
-    --glow-primary-strong: 0 0 60px hsl(210 100% 55% / 0.5);
   }
 }
 
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(0 0% 3%);
+    color: hsl(240 10% 95%);
     font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -68,20 +70,220 @@
   }
 }
 
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-[hsl(200,100%,70%)];
-  }
-
-  .glow-box {
-    box-shadow: var(--glow-primary);
-  }
-
-  .glow-box-strong {
-    box-shadow: var(--glow-primary-strong);
-  }
+/* ── SECTION BACKGROUNDS ──────────────────────────────────── */
+/* Dark sections: pure black */
+.section-dark {
+  background-color: #050505;
+  color: hsl(240 10% 95%);
 }
 
+/* Light sections: Wozart light lavender-grey */
+.section-light {
+  background-color: #E8EAF0;
+  color: #0a0a0a;
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4 {
+  color: #0a0a0a;
+}
+
+.section-light p {
+  color: #444;
+}
+
+.section-light .text-muted {
+  color: #666;
+}
+
+/* ── TYPOGRAPHY ───────────────────────────────────────────── */
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* ── HIGHLIGHT TEXT (Wozart blue accent in headings) ──────── */
+.text-accent-blue {
+  color: #2096D9;
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+/* Wozart-style: solid blue, slightly rounded */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #2096D9;
+  color: #fff;
+  padding: 0.7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: #1a7fba;
+  transform: translateY(-1px);
+}
+
+.btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #fff;
+  padding: 0.7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-outline-dark:hover {
+  border-color: #2096D9;
+  background-color: rgba(32,150,217,0.08);
+  transform: translateY(-1px);
+}
+
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #0a0a0a;
+  padding: 0.7rem 1.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: var(--font-body);
+  border: 1.5px solid #aaa;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-outline-light:hover {
+  border-color: #2096D9;
+  color: #2096D9;
+  transform: translateY(-1px);
+}
+
+/* ── CARDS ────────────────────────────────────────────────── */
+/* White card on light section (Wozart testimonial style) */
+.woz-card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.woz-card:hover {
+  box-shadow: 0 8px 32px rgba(32,150,217,0.12);
+  transform: translateY(-3px);
+}
+
+/* Dark card (glass-like on dark sections) */
+.woz-dark-card {
+  background: rgba(255,255,255,0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.woz-dark-card:hover {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(32,150,217,0.4);
+  transform: translateY(-3px);
+}
+
+/* ── ICON STYLE ───────────────────────────────────────────── */
+.icon-box-light {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.06);
+  margin-bottom: 1.2rem;
+}
+
+.icon-box-dark {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.07);
+  margin-bottom: 1.2rem;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ── SECTION DIVIDERS ─────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+
+/* ── NAV ──────────────────────────────────────────────────── */
+.nav-scrolled {
+  background: rgba(5,5,5,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── STATS STRIPE ─────────────────────────────────────────── */
+.stats-stripe {
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── GRADIENT TEXT ────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #2096D9, #38d9f5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── PARTNER CTA PANEL ────────────────────────────────────── */
+.partner-cta-panel {
+  background: #050505;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── CONTACT PANEL ────────────────────────────────────────── */
+.contact-left-panel {
+  background: #050505;
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* ── MISC ─────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #030303; }
+::-webkit-scrollbar-thumb { background: #2096D9; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #38d9f5; }
+
+a, button { transition: all 0.2s ease; }
