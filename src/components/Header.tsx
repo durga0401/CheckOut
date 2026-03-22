@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
+import MoiLogo from "./MoiLogo";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -69,43 +70,38 @@ const Header = () => {
         }}
       >
         {/* Logo */}
-        <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
-          <img
-            src="/moi-logo.png"
-            alt="MOI Technologies"
-            style={{
-              height: 52,
-              width: 52,
-              objectFit: "cover",
-              objectPosition: "center",
-              display: "block",
-              borderRadius: 8,
-              filter: "drop-shadow(0 0 10px rgba(32,150,217,0.4))",
-              transition: "filter 0.25s ease, transform 0.25s ease",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter =
-                "drop-shadow(0 0 18px rgba(32,150,217,0.7))";
-              (e.currentTarget as HTMLImageElement).style.transform = "scale(1.05)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLImageElement).style.filter =
-                "drop-shadow(0 0 10px rgba(32,150,217,0.4))";
-              (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
-            }}
-          />
-          <span
-            style={{
-              fontFamily: "var(--font-display, 'Montserrat', sans-serif)",
-              fontWeight: 800,
-              fontSize: "1.1rem",
-              color: "#ffffff",
-              letterSpacing: "-0.02em",
-              lineHeight: 1.1,
-            }}
-          >
-            MOI{" "}
-            <span style={{ color: "#2096D9" }}>Technologies</span>
+        <a
+          href="#"
+          style={{
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: 4,
+            transition: "transform 0.25s ease, filter 0.25s ease",
+            filter: "drop-shadow(0 0 4px rgba(32,150,217,0.2))",
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.transform = "scale(1.04)";
+            el.style.filter = "drop-shadow(0 0 10px rgba(32,150,217,0.55)) drop-shadow(0 0 20px rgba(32,150,217,0.25))";
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement;
+            el.style.transform = "scale(1)";
+            el.style.filter = "drop-shadow(0 0 4px rgba(32,150,217,0.2))";
+          }}
+        >
+          <MoiLogo />
+          <span style={{
+            fontFamily: "'Montserrat', 'Inter', sans-serif",
+            fontWeight: 600,
+            fontSize: "0.72rem",
+            color: "rgba(255,255,255,0.75)",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            lineHeight: 1,
+          }}>
+            Technologies
           </span>
         </a>
 
